@@ -11,31 +11,56 @@ public class AirQualityTracker {
   // Declaring literals
   public static double GOODQ = 12.0; // Given in microgram per cubic meter
   public static double UNHEALTHYQ = 35.5;
+  public static int HOURS = 3; // Simpler to test program with less hours
 
   public static double minimum(double[] a) {
-    return null;
+    double min = a[0];
+    for (int i = 0; i < a.length; i++) {
+      if (a[i] < min) {
+        min = a[i];
+      }
+    }
+    return min;
   }
 
   public static double maximum(double[] a) {
-    return null;
+    double max = a[0];
+    for (int i = 0; i < a.length; i++) {
+      if (a[i] > max) {
+        max = a[i];
+      }
+    }
+    return max;
   }
 
   public static double average(double[] a) {
-    return null;
+    double sum = 0.0;
+    double average = 0.0;
+    for (int i = 0; i < a.length; i++) {
+      sum += a[i];
+    }
+    average = sum / a.length;
+    return average;
   }
 
   public static int unsafeHours(double[] a) {
-    return null;
+    int hours = 0;
+    for (int i = 0; i < a.length; i++) {
+      if (a[i] > UNHEALTHYQ) {
+        hours++;
+      }
+    }
+    return hours;
   }
 
   public static void main() {
     // Declaring variables
-    double[] aqByHour = new double[24];
+    double[] aqByHour = new double[HOURS];
     String word = "silly";
     // Initializing scanner object.
     Scanner in = new Scanner(System.in);
     // Let user input data.
-    for (int i = 0; i < 24; i++) {
+    for (int i = 0; i < HOURS; i++) {
       System.out.print("Hour " + i + ":\n");
       // Validate as double
       if (!in.hasNextDouble()) {
@@ -50,5 +75,9 @@ public class AirQualityTracker {
         i--;
       }
     }
+    System.out.println("min: " + minimum(aqByHour));
+    System.out.println("max: " + maximum(aqByHour));
+    System.out.println("average: " + average(aqByHour));
+    System.out.println("hours above: " + unsafeHours(aqByHour));
   }
 }
