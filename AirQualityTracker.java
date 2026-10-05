@@ -11,9 +11,14 @@ public class AirQualityTracker {
   // Declaring literals
   public static double GOODQ = 12.0; // Given in microgram per cubic meter
   public static double UNHEALTHYQ = 35.5;
-  public static int HOURS = 3; // Simpler to test program with less hours
+  public static int HOURS = 24; // Simpler to test program with less hours
 
   public static double minimum(double[] a) {
+    /**
+     * This method finds the minimum of a given double array.
+     *
+     * @param a: any array of type double
+     */
     double min = a[0];
     for (int i = 0; i < a.length; i++) {
       if (a[i] < min) {
@@ -24,6 +29,11 @@ public class AirQualityTracker {
   }
 
   public static double maximum(double[] a) {
+    /**
+     * This method finds the maximum of a given double array.
+     *
+     * @param a: any array of type double
+     */
     double max = a[0];
     for (int i = 0; i < a.length; i++) {
       if (a[i] > max) {
@@ -34,6 +44,11 @@ public class AirQualityTracker {
   }
 
   public static double average(double[] a) {
+    /**
+     * This method finds the average of a given double array.
+     *
+     * @param a: any array of type double
+     */
     double sum = 0.0;
     double average = 0.0;
     for (int i = 0; i < a.length; i++) {
@@ -44,6 +59,11 @@ public class AirQualityTracker {
   }
 
   public static int unsafeHours(double[] a) {
+    /**
+     * This method finds the number of times an array is above a threshold UNHEALTHYQ.
+     *
+     * @param a: any array of type double
+     */
     int hours = 0;
     for (int i = 0; i < a.length; i++) {
       if (a[i] > UNHEALTHYQ) {
@@ -53,7 +73,7 @@ public class AirQualityTracker {
     return hours;
   }
 
-  public static void main() {
+  public static void main(String[] Args) {
     // Declaring variables
     double[] aqByHour = new double[HOURS];
     String word = "silly";
@@ -66,7 +86,7 @@ public class AirQualityTracker {
       if (!in.hasNextDouble()) {
         word = in.next();
         System.err.print(word + " is not a valid AQ measurement\nTry again\n");
-        i--;
+        i--; // avoids nested loop
       }
       aqByHour[i] = in.nextDouble();
       // Validate as positive.
@@ -75,9 +95,13 @@ public class AirQualityTracker {
         i--;
       }
     }
-    System.out.println("min: " + minimum(aqByHour));
-    System.out.println("max: " + maximum(aqByHour));
-    System.out.println("average: " + average(aqByHour));
-    System.out.println("hours above: " + unsafeHours(aqByHour));
+    System.out.print("-------------------------------------------------\n");
+    System.out.print("AIR QUALITY STATISTICS\n");
+    System.out.print("-------------------------------------------------\n");
+    System.out.printf("Minimum: %.1f \n", minimum(aqByHour));
+    System.out.printf("Maximum: %.1f \n", maximum(aqByHour));
+    System.out.printf("Average: %.1f \n", average(aqByHour));
+    System.out.printf("Number of unsafe hours: %d \n", unsafeHours(aqByHour));
+    System.out.print("-------------------------------------------------\n");
   }
 }
