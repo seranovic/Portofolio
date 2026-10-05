@@ -1,17 +1,19 @@
 /*
- S. Stefanovich
+ S. Stefanovich @seranovic
 83898
 
 Ideally all these methods should run at the same time so the array is only read once instead of 4x,
 but for maintanibility reasons I have decided to split these up
 */
+
+/** Air quality tracker. */
 import java.util.*;
 
 public class AirQualityTracker {
   // Declaring literals
   public static double GOODQ = 12.0; // Given in microgram per cubic meter
   public static double UNHEALTHYQ = 35.5;
-  public static int HOURS = 24; // Simpler to test program with less hours
+  public static int HOURS = 3; // Simpler to test program with less hours
 
   /**
    * This method finds the minimum of a given double array.
@@ -73,6 +75,25 @@ public class AirQualityTracker {
     return hours;
   }
 
+  /**
+   * This method returns a string that states if the average of an array represents GOOD, UNHEALTHY
+   * or AVERAGE air quality
+   *
+   * @param a: any array of type double
+   */
+  public static String overallAq(double[] a) {
+    if (average(a) < GOODQ) {
+      return "GOOD\n";
+    }
+    if (UNHEALTHYQ > average(a) || average(a) > GOODQ) {
+      return "AVERAGE\n";
+    }
+    if (average(a) > UNHEALTHYQ) {
+      return "UNHEALTHY\n";
+    }
+    return "";
+  }
+
   public static void main(String[] Args) {
     // Declaring variables
     double[] aqByHour = new double[HOURS];
@@ -98,10 +119,11 @@ public class AirQualityTracker {
     System.out.print("-------------------------------------------------\n");
     System.out.print("AIR QUALITY STATISTICS\n");
     System.out.print("-------------------------------------------------\n");
-    System.out.printf("Minimum: %.1f \n", minimum(aqByHour));
-    System.out.printf("Maximum: %.1f \n", maximum(aqByHour));
-    System.out.printf("Average: %.1f \n", average(aqByHour));
-    System.out.printf("Number of unsafe hours: %d \n", unsafeHours(aqByHour));
+    System.out.printf("Minimum: %.1f μg/m^3\n", minimum(aqByHour));
+    System.out.printf("Maximum: %.1f μg/m^3\n", maximum(aqByHour));
+    System.out.printf("Average: %.1f μg/m^3\n", average(aqByHour));
+    System.out.printf("Hours above safe limit (35.5 μg/m^3): %d \n", unsafeHours(aqByHour));
+    System.out.printf("Overall air quality: %s", overallAq(aqByHour));
     System.out.print("-------------------------------------------------\n");
   }
 }
