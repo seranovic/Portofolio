@@ -13,12 +13,12 @@ public class AirQualityTracker {
   public static double UNHEALTHYQ = 35.5;
   public static int HOURS = 24; // Simpler to test program with less hours
 
+  /**
+   * This method finds the minimum of a given double array.
+   *
+   * @param a: any array of type double
+   */
   public static double minimum(double[] a) {
-    /**
-     * This method finds the minimum of a given double array.
-     *
-     * @param a: any array of type double
-     */
     double min = a[0];
     for (int i = 0; i < a.length; i++) {
       if (a[i] < min) {
@@ -28,12 +28,12 @@ public class AirQualityTracker {
     return min;
   }
 
+  /**
+   * This method finds the maximum of a given double array.
+   *
+   * @param a: any array of type double
+   */
   public static double maximum(double[] a) {
-    /**
-     * This method finds the maximum of a given double array.
-     *
-     * @param a: any array of type double
-     */
     double max = a[0];
     for (int i = 0; i < a.length; i++) {
       if (a[i] > max) {
@@ -43,12 +43,12 @@ public class AirQualityTracker {
     return max;
   }
 
+  /**
+   * This method finds the average of a given double array.
+   *
+   * @param a: any array of type double
+   */
   public static double average(double[] a) {
-    /**
-     * This method finds the average of a given double array.
-     *
-     * @param a: any array of type double
-     */
     double sum = 0.0;
     double average = 0.0;
     for (int i = 0; i < a.length; i++) {
@@ -58,12 +58,12 @@ public class AirQualityTracker {
     return average;
   }
 
+  /**
+   * This method finds the number of times an array is above a threshold UNHEALTHYQ.
+   *
+   * @param a: any array of type double
+   */
   public static int unsafeHours(double[] a) {
-    /**
-     * This method finds the number of times an array is above a threshold UNHEALTHYQ.
-     *
-     * @param a: any array of type double
-     */
     int hours = 0;
     for (int i = 0; i < a.length; i++) {
       if (a[i] > UNHEALTHYQ) {
